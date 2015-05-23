@@ -6,3 +6,5 @@ Members:
  - Halle Remash
  - Marli Remash
  - Alex Rickert
+ - Ian Flaherty
+
