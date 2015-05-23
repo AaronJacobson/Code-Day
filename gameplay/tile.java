@@ -4,12 +4,23 @@
  *
  */
 public class tile {
-    int[] whatCups;
+    cup[] whatCups = new cup[4];
+    int currentCupSize =  0;
 
     public tile() {
     }
 
-    public int[] getWhatCups() {
+    public cup[] getWhatCups() {
         return whatCups;
+    }
+
+    public void addCup(cup a) {
+        whatCups[currentCupSize] = a;
+        currentCupSize += 1;
+    }
+
+    public void removeCup(cup a) {
+        whatCups[currentCupSize] = null;
+        currentCupSize -=1;
     }
 }
