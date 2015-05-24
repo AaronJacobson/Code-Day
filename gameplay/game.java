@@ -20,14 +20,10 @@ public class game {
         //basic panel stuff
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        //Container topPlayer = new Container();
-        //topPlayer.setLayout(new BoxLayout(Box));
         panel.add(new JLabel("HIIIII"));
         Container containGrid = new Container();
         JPanel[][] panelHolder = new JPanel[4][4];
         GridLayout gridLayout = new GridLayout(4, 4);
-        gridLayout.setVgap(5);
-        gridLayout.setHgap(5);
         containGrid.setLayout(gridLayout);
 
         for(int m = 0; m < 4; m++) {
@@ -47,7 +43,6 @@ public class game {
             }
         }
 
-        //containGrid.get
         panel.add(containGrid);
         panel.add(new JLabel("BYYEEE"));
         frame.add(panel);
@@ -56,13 +51,4 @@ public class game {
         frame.setSize(625, 950);
         frame.setLocation(375, 55);
     }
-
-    /*
-    compontent.addMouseListener(new MouseAdapter(){
-        public void mouseClicked(MouseEvent e){
-            System.outsgfjlksf
-        }
-    });
-    */
-
 }
