@@ -8,12 +8,11 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Created by Aaron Jacobson on 5/23/2015.
+ * Created by Aaron Jacobson on 5/24/2015.
  */
 public class Client {
-
     private Socket socket;
-    private ServerToClientHandler serverHandler;
+    private ServerHandler serverHandler;
 
     public Client(){
 
@@ -24,13 +23,16 @@ public class Client {
             socket = new Socket(ip, Server.PORT_NUMBER);
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            serverHandler = new ServerToClientHandler(in,out,socket);
+            serverHandler = new ServerHandler(in,out,socket);
+            Thread serverHandlerThread = new Thread(serverHandler);
+            serverHandlerThread.start();
         } catch (IOException e) {
             System.out.println("Unable to connect to the server.");
         }
     }
 
     public void disconnectFromServer(){
+        System.out.println("Closing connection with the server.");
         serverHandler.stopListening();
     }
 }

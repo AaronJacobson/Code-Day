@@ -6,27 +6,23 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Created by Aaron Jacobson on 5/23/2015.
+ * Created by Aaron Jacobson on 5/24/2015.
  */
-public class ServerToClientHandler implements Runnable{
+public class ServerHandler implements Runnable{
+
     private DataInputStream dataIn;
     private DataOutputStream dataOut;
     private Socket socket;
     private boolean shouldListen;
 
-    public ServerToClientHandler(DataInputStream in, DataOutputStream out,Socket socket){
+    public ServerHandler(DataInputStream in, DataOutputStream out,Socket socket){
         this.dataIn = in;
         this.dataOut = out;
         this.socket = socket;
-        shouldListen = true;
     }
 
     @Override
     public void run() {
-        listenToServer();
-    }
-
-    public void listenToServer(){
         while(shouldListen){
             try {
                 String message = dataIn.readUTF();
@@ -47,7 +43,7 @@ public class ServerToClientHandler implements Runnable{
         }
     }
 
-    public void interpretData(String message){
+    public void interpretMessage(String message){
 
     }
 }
