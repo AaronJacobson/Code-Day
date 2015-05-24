@@ -37,20 +37,22 @@ public class tile {
     }
 
     public JLabel getBiggestTile() {
-        /*if (whatCups[currentCupSize-1].getColor()){
-            ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BlackCupSize" + currentCupSize + ".jpg");
-            JLabel lab = new JLabel(icon);
-            return lab;
-        } else if(!(whatCups[currentCupSize-1].getColor())){
-            ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BeigeCupSize" + currentCupSize + ".jpg");
-            JLabel lab = new JLabel(icon);
-            return lab;
+        if (! (whatCups[currentCupSize-1] == null)) {
+            if (whatCups[currentCupSize - 1].getColor()) {
+                ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BlackCupSize" + currentCupSize + ".jpg");
+                JLabel lab = new JLabel(icon);
+                return lab;
+            } else  { //if (!(whatCups[currentCupSize - 1].getColor()))
+                ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BeigeCupSize" + currentCupSize + ".jpg");
+                JLabel lab = new JLabel(icon);
+                return lab;
+            }
         } else {
             ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BlankTile.jpg");
             JLabel lab = new JLabel(icon);
             return lab;
-        }*/
-        return new JLabel(new ImageIcon(System.getProperty("user.dir") + "\\BlankTile.jpg"));
+        }
+       // return new JLabel(new ImageIcon(System.getProperty("user.dir") + "\\BlankTile.jpg"));
     }
 
 }

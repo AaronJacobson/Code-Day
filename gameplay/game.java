@@ -7,8 +7,25 @@ import java.awt.event.MouseEvent;
  * Created by Marli on 5/23/2015.
  */
 public class game {
+    //general ui feilds
     private JFrame frame;
     private JPanel panel;
+
+    //enemy side
+    private Container enemySide;
+    private tile[] enemyTile;
+    private JPanel[] panelHolderEnemy;
+
+    //home side
+    private Container homeSide;
+    private tile[] homeTile;
+    private JPanel[] panelHolderHome;
+
+    //grid
+    private Container containGrid;
+
+
+    //constants
     private static final int NUMBER_OF_PLAYER_TILES = 3;
     private static final int WIDTH_OF_BOARD = 4;
     private static final int HEIGHT_OF_BOARD = 4;
@@ -26,13 +43,14 @@ public class game {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        //testing mouse listener
-        Container enemySide = new Container();
+        //Enemy side layout basic
+        enemySide = new Container();
         enemySide.setLayout(new BoxLayout(enemySide, BoxLayout.X_AXIS));
-        tile[] enemyTile = new tile[NUMBER_OF_PLAYER_TILES];
-        Container[] panelHolderEnemy = new Container[NUMBER_OF_PLAYER_TILES];
+        enemyTile = new tile[NUMBER_OF_PLAYER_TILES];
+        panelHolderEnemy = new JPanel[NUMBER_OF_PLAYER_TILES];
+       //cup[] startCups = {new cup(0, false), new cup(1, false), new cup(2, false), new cup(3, false)};
         for(int e = 0; e< NUMBER_OF_PLAYER_TILES; e++){
-            enemyTile[e] = new tile(4);
+            enemyTile[e] =  new tile(4);//new tile(startCups);
             panelHolderEnemy[e] = new JPanel();
             panelHolderEnemy[e].add(enemyTile[e].getBiggestTile());
             enemySide.add(panelHolderEnemy[e]);
@@ -47,13 +65,13 @@ public class game {
         });*/
 
         Container containGrid = new Container();
-        JPanel[][] panelHolderBoard = new JPanel[4][4];
-        tile[][] tileBoard = new tile[4][4];
-        GridLayout gridLayout = new GridLayout(4, 4);
+        JPanel[][] panelHolderBoard = new JPanel[HEIGHT_OF_BOARD][WIDTH_OF_BOARD];
+        tile[][] tileBoard = new tile[HEIGHT_OF_BOARD][WIDTH_OF_BOARD];
+        GridLayout gridLayout = new GridLayout(HEIGHT_OF_BOARD, WIDTH_OF_BOARD);
         containGrid.setLayout(gridLayout);
 
-        for(int m = 0; m < 4; m++) {
-            for (int n = 0; n < 4; n++) {
+        for(int m = 0; m < HEIGHT_OF_BOARD; m++) {
+            for (int n = 0; n < WIDTH_OF_BOARD; n++) {
                 tileBoard[m][n] = new tile();
                 panelHolderBoard[m][n] = new JPanel();
                 panelHolderBoard[m][n].add(tileBoard[m][n].getBiggestTile());
@@ -62,10 +80,11 @@ public class game {
         }
         panel.add(containGrid);
 
-        Container homeSide = new Container();
+        //Home side layout basic
+        homeSide = new Container();
         homeSide.setLayout(new BoxLayout(homeSide, BoxLayout.X_AXIS));
-        tile[] homeTile = new tile[NUMBER_OF_PLAYER_TILES];
-        Container[] panelHolderHome = new Container[NUMBER_OF_PLAYER_TILES];
+        homeTile = new tile[NUMBER_OF_PLAYER_TILES];
+        panelHolderHome = new JPanel[NUMBER_OF_PLAYER_TILES];
         for(int e = 0; e< NUMBER_OF_PLAYER_TILES; e++){
             homeTile[e] = new tile(4);
             panelHolderHome[e] = new JPanel();
@@ -77,7 +96,6 @@ public class game {
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setSize(625, 975);
-        frame.setLocation(375, 55);
     }
 
 }
