@@ -20,6 +20,7 @@ public class tile {
 
     public tile(cup[] cupArray){
         this.whatCups = cupArray;
+        currentCupSize = getBiggestCupSize();
     }
 
     public cup[] getWhatCups() {
@@ -36,21 +37,35 @@ public class tile {
         currentCupSize -=1;
     }
 
-    public JLabel getBiggestTile() {
-        /*if (whatCups[currentCupSize-1].getColor()){
-            ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BlackCupSize" + currentCupSize + ".jpg");
-            JLabel lab = new JLabel(icon);
-            return lab;
-        } else if(!(whatCups[currentCupSize-1].getColor())){
-            ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BeigeCupSize" + currentCupSize + ".jpg");
-            JLabel lab = new JLabel(icon);
-            return lab;
+    public JLabel getBiggestCup() {
+        System.out.println(whatCups[0]);
+        System.out.println(currentCupSize);
+        if (! (whatCups[currentCupSize - 1] == null)) {
+            if (whatCups[currentCupSize- 1].getColor()) {
+                ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BlackGobbletSize" + currentCupSize + ".jpg");
+                JLabel lab = new JLabel(icon);
+                return lab;
+            } else  { //if (!(whatCups[currentCupSize - 1].getColor()))
+                ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BeigeGobbletSize" + currentCupSize + ".jpg");
+                JLabel lab = new JLabel(icon);
+                return lab;
+            }
         } else {
             ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BlankTile.jpg");
             JLabel lab = new JLabel(icon);
             return lab;
-        }*/
-        return new JLabel(new ImageIcon(System.getProperty("user.dir") + "\\BlankTile.jpg"));
+        }
+       // return new JLabel(new ImageIcon(System.getProperty("user.dir") + "\\BlankTile.jpg"));
+    }
+
+    private int getBiggestCupSize(){
+        int largest = 0;
+        for(int s= 0; s < whatCups.length; s++){
+            if(whatCups[s].getSize() > largest){
+                largest = whatCups[s].getSize();
+            }
+        }
+        return largest;
     }
 
 }
