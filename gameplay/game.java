@@ -20,32 +20,35 @@ public class game {
         //basic panel stuff
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        //Container topPlayer = new Container();
+        //topPlayer.setLayout(new BoxLayout(Box));
         panel.add(new JLabel("HIIIII"));
         Container containGrid = new Container();
         JPanel[][] panelHolder = new JPanel[4][4];
-        containGrid.setLayout(new GridLayout(4, 4));
+        GridLayout gridLayout = new GridLayout(4, 4);
+        gridLayout.setVgap(5);
+        gridLayout.setHgap(5);
+        containGrid.setLayout(gridLayout);
 
         for(int m = 0; m < 4; m++) {
             for (int n = 0; n < 4; n++) {
-                ImageIcon icon = new ImageIcon("C:\\Users\\Marli\\Documents\\Code-Day\\BeigeGobbletSize1.jpg");
-                JLabel lab = new JLabel(icon);
-                JPanel pan = new JPanel();
-                pan.add(lab);
-                panelHolder[m][n] = pan;
+                panelHolder[m][n] = new JPanel();
                 containGrid.add(panelHolder[m][n]);
             }
         }
 
-        try {
-            ImageIcon icon = new ImageIcon("C:\\Users\\Marli\\Documents\\Code-Day\\BeigeGobbletSize1.jpg");
-            JLabel lab = new JLabel(icon);
-            panel.add(lab);
-           // panel.add(lab);
-        } catch (NullPointerException npe){
-            npe.printStackTrace();
-            System.out.println("Failed");
+        for(int k = 0; k < 4; k++){
+            for(int h= 0; h < 4; h++){
+                ImageIcon icon = new ImageIcon(System.getProperty("user.dir") +  "\\BlankTile.jpg");
+                JLabel lab = new JLabel(icon);
+                panelHolder[k][h].add(lab);
+
+                System.out.println(panelHolder[k][h].getSize());
+            }
         }
-        //panel.add(containGrid);
+
+        //containGrid.get
+        panel.add(containGrid);
         panel.add(new JLabel("BYYEEE"));
         frame.add(panel);
         frame.setVisible(true);
