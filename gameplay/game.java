@@ -55,6 +55,10 @@ public class game {
         panelHolderEnemy = new JPanel[NUMBER_OF_PLAYER_TILES];
         for(int e = 0; e< NUMBER_OF_PLAYER_TILES; e++){
             enemyTile[e] = new tile();
+            enemyTile[e].whatCups.add(new cup(1,false));
+            enemyTile[e].whatCups.add(new cup(2,false));
+            enemyTile[e].whatCups.add(new cup(3, false));
+            enemyTile[e].whatCups.add(new cup(4, false));
             panelHolderEnemy[e] = new JPanel();
             panelHolderEnemy[e].add(enemyTile[e].getBiggestCup());
             enemySide.add(panelHolderEnemy[e]);
@@ -91,6 +95,10 @@ public class game {
         panelHolderHome = new JPanel[NUMBER_OF_PLAYER_TILES];
         for(int e = 0; e< NUMBER_OF_PLAYER_TILES; e++){
             homeTile[e] = new tile(4);
+            homeTile[e].whatCups.add(new cup(1,true));
+            homeTile[e].whatCups.add(new cup(2,true));
+            homeTile[e].whatCups.add(new cup(3,true));
+            homeTile[e].whatCups.add(new cup(4,true));
             panelHolderHome[e] = new JPanel();
             panelHolderHome[e].add(homeTile[e].getBiggestCup());
             homeSide.add(panelHolderHome[e]);
@@ -99,7 +107,7 @@ public class game {
         frame.add(panel);
         frame.setVisible(true);
         frame.setResizable(false);
-        frame.setSize(625, 975);
+        frame.setSize(650, 1000);
     }
 
     private class MouseAdapterSpecial extends MouseAdapter {
