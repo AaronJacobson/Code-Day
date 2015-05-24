@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Marli on 5/23/2015.
@@ -20,7 +22,16 @@ public class game {
         //basic panel stuff
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.add(new JLabel("HIIIII"));
+
+        //testing mouse listener
+        JLabel hello = new JLabel("Hello Bitches");
+        panel.add(hello);
+        hello.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("WTF IS THIS SHIT MARLI");
+            }
+        });
+
         Container containGrid = new Container();
         JPanel[][] panelHolder = new JPanel[4][4];
         GridLayout gridLayout = new GridLayout(4, 4);
@@ -51,13 +62,5 @@ public class game {
         frame.setSize(625, 950);
         frame.setLocation(375, 55);
     }
-
-    /*
-    compontent.addMouseListener(new MouseAdapter(){
-        public void mouseClicked(MouseEvent e){
-            System.outsgfjlksf
-        }
-    });
-    */
 
 }
