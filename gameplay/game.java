@@ -51,4 +51,13 @@ public class game {
         frame.setSize(625, 950);
         frame.setLocation(375, 55);
     }
+
+    /*
+    compontent.addMouseListener(new MouseAdapter(){
+        public void mouseClicked(MouseEvent e){
+            System.outsgfjlksf
+        }
+    });
+    */
+
 }
