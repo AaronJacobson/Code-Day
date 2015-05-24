@@ -1,4 +1,4 @@
-package client;
+package server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -8,17 +8,18 @@ import java.net.Socket;
 /**
  * Created by Aaron Jacobson on 5/24/2015.
  */
-public class ServerHandler implements Runnable{
+public class ClientHandler implements Runnable{
 
     private DataInputStream dataIn;
     private DataOutputStream dataOut;
     private Socket socket;
     private boolean shouldListen;
 
-    public ServerHandler(DataInputStream in, DataOutputStream out,Socket socket){
+    public ClientHandler(DataInputStream in,DataOutputStream out,Socket socket){
         this.dataIn = in;
         this.dataOut = out;
         this.socket = socket;
+        shouldListen = true;
     }
 
     @Override
@@ -28,7 +29,7 @@ public class ServerHandler implements Runnable{
                 String message = dataIn.readUTF();
                 interpretMessage(message);
             } catch (IOException e) {
-                System.out.println("ServerHandler: Lost connection to the server.");
+                System.out.println("ClientHandler: Lost connection to the server.");
                 stopListening();
                 break;
             }
@@ -40,7 +41,7 @@ public class ServerHandler implements Runnable{
         try {
             socket.close();
         } catch (IOException e) {
-            System.out.println("ServerHandler: Unable to close the connection.");
+            System.out.println("ClientHandler: Unable to close the connection.");
         }
     }
 
@@ -52,7 +53,7 @@ public class ServerHandler implements Runnable{
         try {
             dataOut.writeUTF(toSend);
         } catch (IOException e) {
-            System.out.println("ServerHandler: Lost connection to the server.");
+            System.out.println("ClientHandler: Lost connection to the server.");
             stopListening();
         }
     }

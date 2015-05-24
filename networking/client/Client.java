@@ -27,12 +27,12 @@ public class Client {
             Thread serverHandlerThread = new Thread(serverHandler);
             serverHandlerThread.start();
         } catch (IOException e) {
-            System.out.println("Unable to connect to the server.");
+            System.out.println("Client: Unable to connect to the server.");
         }
     }
 
     public void disconnectFromServer(){
-        System.out.println("Closing connection with the server.");
+        System.out.println("Client: Closing connection with the server.");
         serverHandler.stopListening();
     }
 }
