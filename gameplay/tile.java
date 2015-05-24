@@ -6,10 +6,21 @@ import javax.swing.*;
  *
  */
 public class tile {
-    cup[] whatCups = new cup[4];
+    cup[] whatCups;
     int currentCupSize = 1;
 
-    public tile() {}
+    public tile() {
+        whatCups = new cup[4];
+    }
+
+    public tile(int maxCupSize){
+        currentCupSize = maxCupSize;
+        whatCups = new cup[4];
+    }
+
+    public tile(cup[] cupArray){
+        this.whatCups = cupArray;
+    }
 
     public cup[] getWhatCups() {
         return whatCups;
@@ -26,7 +37,7 @@ public class tile {
     }
 
     public JLabel getBiggestTile() {
-        if (whatCups[currentCupSize-1].getColor()){
+        /*if (whatCups[currentCupSize-1].getColor()){
             ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BlackCupSize" + currentCupSize + ".jpg");
             JLabel lab = new JLabel(icon);
             return lab;
@@ -38,7 +49,8 @@ public class tile {
             ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "\\BlankTile.jpg");
             JLabel lab = new JLabel(icon);
             return lab;
-        }
+        }*/
+        return new JLabel(new ImageIcon(System.getProperty("user.dir") + "\\BlankTile.jpg"));
     }
 
 }
