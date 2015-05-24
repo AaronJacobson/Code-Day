@@ -20,4 +20,6 @@ public class cup {
     public int getSize() {
         return size;
     }
+
+    public String toString() { return "Size =" + size + color;}
 }

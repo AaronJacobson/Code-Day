@@ -80,31 +80,16 @@ public class game {
 
         for( int m = 0; m < HEIGHT_OF_BOARD; m++) {
             for (int n = 0; n < WIDTH_OF_BOARD; n++) {
-                if(m == 1 && n == 1){
-                    ArrayList<cup> list = new ArrayList<cup>();
-                    list.add(new cup(4, false));
-                    tileBoard[1][1] = new tile();
-                    panelHolderBoard[1][1] = new JPanel();
-                    JLabel img = tileBoard[1][1].getBiggestCup();
-                    panelHolderBoard[1][1].add(img);
-                    height = 1;
-                    width = 1;
-                    img.addMouseListener(new MouseAdapterSpecial(img, panelHolderBoard[1][1]));
-                    containGrid.add(panelHolderBoard[1][1]);
-                }
-                else {
-                tileBoard[m][n] = new tile();
-                panelHolderBoard[m][n] = new JPanel();
+                    tileBoard[m][n] = new tile();
+                    panelHolderBoard[m][n] = new JPanel();
                     if(panelHolderBoard[m][n] != null) System.out.println("Yay");
                     if(panelHolderBoard[m][n] == null) System.out.println("Numm");
-                JLabel img = tileBoard[m][n].getBiggestCup();
-                panelHolderBoard[m][n].add(img);
-                height = m;
-                width = n;
-                img.addMouseListener(new MouseAdapterSpecial(img, panelHolderBoard[m][n]));
-                containGrid.add(panelHolderBoard[m][n]);}
-
-            }
+                    JLabel img = tileBoard[m][n].getBiggestCup();
+                    panelHolderBoard[m][n].add(img);
+                    height = m;
+                    width = n;
+                    img.addMouseListener(new MouseAdapterSpecial(img, panelHolderBoard[m][n]));
+                    containGrid.add(panelHolderBoard[m][n]);}
         }
         panel.add(containGrid);
 
@@ -135,14 +120,18 @@ public class game {
     }
 
     public int[] getPanelPosition(JPanel el){
-        int x;
-        int y;
         int[] point = new int[2];
-        for(int yy = 0; yy < HEIGHT_OF_BOARD; yy++){
-            for(int xx = 0; xx < WIDTH_OF_BOARD; xx++){
-                if(panelHolderBoard[yy][xx] == el){
-                    point = new int[]{yy, xx};
+        System.out.println("Actual " + el );
+        for(int y = 0; y < HEIGHT_OF_BOARD; y++){
+            for(int x = 0; x < WIDTH_OF_BOARD; x++){
+                if(panelHolderBoard[y][x] == el){
+                    point = new int[]{y, x};
                 }
+            }
+        }
+        for(int z = 0; z < panelHolderHome.length; z ++){
+            if(panelHolderHome[z] == el){
+                point = new int[]{z};
             }
         }
         return point;
@@ -150,9 +139,7 @@ public class game {
 
     private class MouseAdapterSpecial extends MouseAdapter {
         private JLabel label;
-        private boolean twoD;
         private JPanel p;
-        private JPanel passed;
 
         public MouseAdapterSpecial(JLabel label, JPanel p){
             super();
@@ -166,25 +153,35 @@ public class game {
             if (selected == null) {
                 selected = label;
                 int[] thePoints = getPanelPosition(p);
-                tile initialTile = tileBoard[thePoints[0]][thePoints[1]];
-                if (initialTile.whatCups.size() > 0) {
-                    movingCup = initialTile.whatCups.get(initialTile.whatCups.size() - 1);
-                    initialTile.whatCups.remove(initialTile.whatCups.size() - 1);
-                }
+               /*
+                if(thePoints.length > 1) {
+                    tile initialTile = tileBoard[thePoints[0]][thePoints[1]];
+                    //movingCup = initialTile.whatCups.get(initialTile.whatCups.size()-1);
+                    //initialTile.whatCups.remove(initialTile.whatCups.size() - 1);
+                } else {
+                    tile initialTile = homeTile[thePoints[0]];
+                    for (int i = 0; i < initialTile.whatCups.size(); i++) {
+
+                    }
+                    //movingCup = initialTile.whatCups.get(initialTile.whatCups.size()-1);
+                    //initialTile.whatCups.remove(initialTile.whatCups.size() - 1);
+                } */
                 p = (JPanel) selected.getParent();
                 p.removeAll();
-                p.add(initialTile.getBiggestCup());
+                JLabel l = new JLabel(new ImageIcon(System.getProperty("user.dir") + "\\BlackGobbletSize1.jpg"));
+                l.addMouseListener(new MouseAdapterSpecial(l, p));
+                p.add(l);
             } else {
-                int[] thePoints = getPanelPosition(p);
+               /* int[] thePoints = getPanelPosition(p);
                 tile secondaryTile = tileBoard[thePoints[0]][thePoints[1]];
+                System.out.println(movingCup);
                 if(movingCup.size > secondaryTile.currentCupSize) {
                     secondaryTile.whatCups.add(movingCup);
-                }
+                }*/
                 p.removeAll();
                 p.add(selected);
                 SwingUtilities.updateComponentTreeUI(frame);
                 selected = null;
-                passed = null;
             }
 
         }
