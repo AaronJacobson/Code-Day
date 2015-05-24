@@ -25,6 +25,10 @@ public class tile {
         currentCupSize = getBiggestCupSize();
     }
 
+    public void setCurrentCupSize(int size){
+        currentCupSize = size;
+    }
+
     public ArrayList<cup> getWhatCups() {
         return whatCups;
     }
