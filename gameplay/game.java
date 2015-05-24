@@ -48,11 +48,14 @@ public class game {
         enemySide.setLayout(new BoxLayout(enemySide, BoxLayout.X_AXIS));
         enemyTile = new tile[NUMBER_OF_PLAYER_TILES];
         panelHolderEnemy = new JPanel[NUMBER_OF_PLAYER_TILES];
-       //cup[] startCups = {new cup(0, false), new cup(1, false), new cup(2, false), new cup(3, false)};
+       cup[] startCups = {new cup(0, false), new cup(1, false), new cup(2, false), new cup(3, false)};
         for(int e = 0; e< NUMBER_OF_PLAYER_TILES; e++){
-            enemyTile[e] =  new tile(4);//new tile(startCups);
+            tile test = new tile();
+            test.addCup(new cup(4, false));
+            enemyTile[e] = test;
+            //enemyTile[e] = new tile(startCups);// new tile(4);//
             panelHolderEnemy[e] = new JPanel();
-            panelHolderEnemy[e].add(enemyTile[e].getBiggestTile());
+            panelHolderEnemy[e].add(enemyTile[e].getBiggestCup());
             enemySide.add(panelHolderEnemy[e]);
         }
         panel.add(enemySide);
@@ -74,7 +77,7 @@ public class game {
             for (int n = 0; n < WIDTH_OF_BOARD; n++) {
                 tileBoard[m][n] = new tile();
                 panelHolderBoard[m][n] = new JPanel();
-                panelHolderBoard[m][n].add(tileBoard[m][n].getBiggestTile());
+                panelHolderBoard[m][n].add(tileBoard[m][n].getBiggestCup());
                 containGrid.add(panelHolderBoard[m][n]);
             }
         }
@@ -88,7 +91,7 @@ public class game {
         for(int e = 0; e< NUMBER_OF_PLAYER_TILES; e++){
             homeTile[e] = new tile(4);
             panelHolderHome[e] = new JPanel();
-            panelHolderHome[e].add(homeTile[e].getBiggestTile());
+            panelHolderHome[e].add(homeTile[e].getBiggestCup());
             homeSide.add(panelHolderHome[e]);
         }
         panel.add(homeSide);
