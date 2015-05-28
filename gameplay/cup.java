@@ -1,5 +1,7 @@
 /**
+ *
  * Created by Alex on 5/23/2015.
+ *
  */
 public class cup {
 
@@ -18,4 +20,6 @@ public class cup {
     public int getSize() {
         return size;
     }
+
+    public String toString() { return "Size =" + size + color;}
 }
